@@ -1,4 +1,4 @@
-package com.github.vlsidlyarevich.concurrency_practice;
+package com.github.vlsidlyarevich.concurrency_practice.producer_consumer.api;
 
 public class Main {
 
