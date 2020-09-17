@@ -1,6 +1,5 @@
 package com.github.vlsidlyarevich.concurrency_practice.producer_consumer.basic;
 
-import java.util.Arrays;
 import java.util.Queue;
 
 class Consumer extends Thread {
