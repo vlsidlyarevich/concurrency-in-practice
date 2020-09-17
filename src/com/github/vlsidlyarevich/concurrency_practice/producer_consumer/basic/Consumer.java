@@ -7,7 +7,8 @@ class Consumer extends Thread {
 
     private final Queue<Integer> queue;
 
-    Consumer(final Queue<Integer> queue) {
+    Consumer(final Queue<Integer> queue, final String threadName) {
+        super(threadName);
         if (queue == null)
             throw new IllegalArgumentException("Cannot construct instance of Consumer: queue cannot be null");
         this.queue = queue;
@@ -17,12 +18,23 @@ class Consumer extends Thread {
     public void run() {
         while (true) {
             try {
-                Thread.sleep(1000);
+                consume();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.printf("Consuming value: %d%n", queue.poll());
-            System.out.println(Arrays.toString(queue.toArray()));
+        }
+    }
+
+    private void consume() throws InterruptedException {
+        synchronized (queue) {
+            Thread.sleep(500);
+            if (queue.isEmpty()) {
+                System.out.println("Consumer idle");
+                queue.notifyAll();
+                queue.wait();
+            } else {
+                System.out.printf("%s: Consuming value: %d%n", this.getName(), queue.poll());
+            }
         }
     }
 }

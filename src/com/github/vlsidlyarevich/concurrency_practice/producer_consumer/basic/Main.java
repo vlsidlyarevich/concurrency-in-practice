@@ -7,9 +7,11 @@ public class Main {
 
     public static void main(String[] args) {
         Queue<Integer> queue = new LinkedList<>();
-        Producer producer = new Producer(queue, 10);
+        Producer producer = new Producer(queue, 3, "Producer");
+        Consumer consumer1 = new Consumer(queue, "Consumer 1");
+//        Consumer consumer2 = new Consumer(queue, "Consumer 2");
         producer.start();
-        Consumer consumer = new Consumer(queue);
-        consumer.start();
+        consumer1.start();
+//        consumer2.start();
     }
 }
