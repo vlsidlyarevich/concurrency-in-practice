@@ -27,8 +27,8 @@ class Consumer extends Thread {
     private void consume() throws InterruptedException {
         synchronized (queue) {
             Thread.sleep(500);
-            if (queue.isEmpty()) {
-                System.out.println("Consumer idle");
+            if (queue.isEmpty() && producerState.isRunning()) {
+                System.out.printf("%s idle%n", this.getName());
                 queue.notifyAll();
                 queue.wait();
             } else {

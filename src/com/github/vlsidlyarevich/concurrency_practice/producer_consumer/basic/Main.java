@@ -12,6 +12,8 @@ public class Main {
 //        Consumer consumer2 = new Consumer(queue, "Consumer 2");
         producer.start();
         consumer1.start();
-//        consumer2.start();
+        producer.join();
+        consumer1.join();
+        System.out.println("END");
     }
 }
