@@ -11,11 +11,14 @@ public class Producer extends Thread {
 
     private final ProducerState producerState = new ProducerState();
 
-    public Producer(final Queue<Integer> queue, final int maxSize, final String threadName) {
+    private static final int DEFAULT_CYCLES_COUNT = 10;
+
+    public Producer(final Queue<Integer> queue, final int maxSize, final int cyclesCount, final String threadName) {
         super(threadName);
         if (queue == null || maxSize <= 0) throw new IllegalArgumentException("Cannot construct instance of Producer");
         this.queue = queue;
         this.maxSize = maxSize;
+        this.cyclesCount = cyclesCount > 0 ? cyclesCount : DEFAULT_CYCLES_COUNT;
     }
 
     public ProducerState getProducerState() {
@@ -25,13 +28,26 @@ public class Producer extends Thread {
     @Override
     public void run() {
         int startingValue = 0;
-        while (true) {
+        int currentCycle = 0;
+        while (currentCycle < cyclesCount) {
+            currentCycle++;
             try {
                 produce(startingValue++);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+        this.producerState.stop();
+//        Ensure that monitor is free
+        synchronized (queue) {
+            try {
+                queue.notifyAll();
+            } catch (IllegalMonitorStateException ignored) {
+            }
+        }
+
+        System.out.printf("---------End of %s job---------%n", this.getName());
     }
 
     private void produce(int startingValue) throws InterruptedException {

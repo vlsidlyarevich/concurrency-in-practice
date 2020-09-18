@@ -1,27 +1,34 @@
 package com.github.vlsidlyarevich.concurrency_practice.producer_consumer.basic;
 
+import com.github.vlsidlyarevich.concurrency_practice.producer_consumer.basic.producer.Producer;
+
 import java.util.Queue;
 
 class Consumer extends Thread {
 
     private final Queue<Integer> queue;
 
-    Consumer(final Queue<Integer> queue, final String threadName) {
+    private final Producer.ProducerState producerState;
+
+    Consumer(final Queue<Integer> queue, final Producer.ProducerState producerState, final String threadName) {
         super(threadName);
-        if (queue == null)
-            throw new IllegalArgumentException("Cannot construct instance of Consumer: queue cannot be null");
+        this.producerState = producerState;
+        if (queue == null || producerState == null)
+            throw new IllegalArgumentException("Cannot construct instance of Consumer");
         this.queue = queue;
     }
 
     @Override
     public void run() {
-        while (true) {
+        while (producerState.isRunning()) {
             try {
                 consume();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }
+
+        System.out.printf("---------End of %s job---------%n", this.getName());
     }
 
     private void consume() throws InterruptedException {
