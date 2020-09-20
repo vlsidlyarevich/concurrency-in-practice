@@ -1,5 +1,6 @@
 package com.github.vlsidlyarevich.concurrency_practice.producer_consumer.advanced.buffer;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
 import java.util.Queue;
@@ -33,6 +34,7 @@ public class Buffer<T> {
             }
 
             queue.add(e);
+            System.out.println("Element added: " + Arrays.toString(queue.toArray()));
         } finally {
             lock.unlock();
         }
@@ -43,6 +45,7 @@ public class Buffer<T> {
 
         try {
             T poll = queue.remove();
+            System.out.println("Element removed: " + Arrays.toString(queue.toArray()));
             if (queue.isEmpty()) this.isEmpty.set(true);
             else this.isFull.set(false);
             return poll;
