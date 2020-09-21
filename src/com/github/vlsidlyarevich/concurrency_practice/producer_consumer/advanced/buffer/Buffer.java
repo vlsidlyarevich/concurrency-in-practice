@@ -23,18 +23,20 @@ public class Buffer<T> {
         this.capacity = capacity;
     }
 
-    public void put(T e) {
+    public boolean put(T e) {
         if (e == null) throw new IllegalArgumentException("Nulls not allowed");
         lock.lock();
 
         try {
             if (queue.size() == capacity) {
                 this.isFull.set(true);
-                return;
+                //TODO here we lose value
+                return false;
             }
 
             queue.add(e);
             System.out.println("Element added: " + Arrays.toString(queue.toArray()));
+            return true;
         } finally {
             lock.unlock();
         }

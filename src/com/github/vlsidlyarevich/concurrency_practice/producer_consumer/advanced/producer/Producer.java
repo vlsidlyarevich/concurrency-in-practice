@@ -26,13 +26,15 @@ public class Producer extends Thread {
 
     @Override
     public void run() {
-        int startingValue = 0;
+        int value = 0;
         int currentCycle = 0;
         this.isRunning.set(true);
         while (currentCycle < cyclesCount) {
             currentCycle++;
             try {
-                produce(startingValue++);
+                boolean isSuccessfulPut = put(value);
+                value += isSuccessfulPut ? 1 : 0;
+                if (!isSuccessfulPut) System.out.printf("%s: Can't put value: %d%n", this.getName(), value);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -41,9 +43,9 @@ public class Producer extends Thread {
         System.out.printf("---------End of %s job---------%n", this.getName());
     }
 
-    private void produce(int startingValue) throws InterruptedException {
-        System.out.printf("%s: Producing value: %d%n", this.getName(), startingValue++);
-        buffer.put(startingValue);
+    private boolean put(int value) throws InterruptedException {
+        System.out.printf("%s: Producing value: %d%n", this.getName(), value);
+        return buffer.put(value);
     }
 }
 
