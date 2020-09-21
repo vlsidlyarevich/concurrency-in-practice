@@ -34,7 +34,7 @@ public class Consumer<T> extends Thread {
     }
 
     private void consume() throws InterruptedException, NoSuchElementException {
-//        Thread.sleep(200);
+        Thread.sleep(500);
         System.out.printf("%s: Consuming value: %d%n", this.getName(), buffer.get());
     }
 }

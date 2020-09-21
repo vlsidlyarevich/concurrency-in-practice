@@ -44,6 +44,7 @@ public class Producer extends Thread {
     }
 
     private boolean put(int value) throws InterruptedException {
+        Thread.sleep(100);
         System.out.printf("%s: Producing value: %d%n", this.getName(), value);
         return buffer.put(value);
     }
