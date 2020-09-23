@@ -13,7 +13,7 @@ Create an application which represents producer-consumer problem and meets follo
 native java tools (object monitor: wait/notify/syncronized) - [link](https://github.com/vlsidlyarevich/concurrency-in-practice/blob/master/src/com/github/vlsidlyarevich/concurrency_practice/producer_consumer/basic/Main.java)
 * Advanced (and i would say more correct) solution built on usage of Reentrant locks and
 atomic booleans. Supports multiple consumers with fair poll (first in, first out), producer tries to put same value 
-if queue is full. Consumer tries to poll until queue has at least one item - [link](https://github.com/vlsidlyarevich/concurrency-in-practice/blob/master/src/com/github/vlsidlyarevich/concurrency_practice/producer_consumer/advanced/Main.java)
+if buffer is full. Consumer tries to poll until buffer has at least one item - [link](https://github.com/vlsidlyarevich/concurrency-in-practice/blob/master/src/com/github/vlsidlyarevich/concurrency_practice/producer_consumer/advanced/Main.java)
 
 
 
