@@ -4,16 +4,17 @@ import java.util.Objects;
 
 public class Philosopher {
 
-    private final Table table;
+    private Table table;
     private final String name;
     private Boolean isEating;
 
-    public Philosopher(final Table table, final String name) {
-        this.table = table;
+    public Philosopher(final String name) {
         this.name = name;
     }
 
-
+    public void setTable(final Table table) {
+        this.table = table;
+    }
 
     @Override
     public boolean equals(final Object o) {

@@ -1,12 +1,16 @@
 package com.github.vlsidlyarevich.concurrency_practice.dining_philosophers;
 
-public class Pair<T> {
+public class Pair<L, R> {
 
-    private final T left;
-    private final T right;
+    private final L left;
+    private final R right;
 
-    public Pair(final T left, final T right) {
+    private Pair(final L left, final R right) {
         this.left = left;
         this.right = right;
+    }
+
+    public static <L, R> Pair<L, R> of(final L left, final R right) {
+        return new Pair<>(left, right);
     }
 }
