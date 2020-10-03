@@ -8,4 +8,12 @@ public class Fork {
     public Fork(final int number) {
         this.number = number;
     }
+
+    public Philosopher getOwner() {
+        return owner;
+    }
+
+    public int getNumber() {
+        return number;
+    }
 }

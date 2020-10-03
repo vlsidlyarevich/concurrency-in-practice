@@ -13,4 +13,12 @@ public class Pair<L, R> {
     public static <L, R> Pair<L, R> of(final L left, final R right) {
         return new Pair<>(left, right);
     }
+
+    public L getLeft() {
+        return left;
+    }
+
+    public R getRight() {
+        return right;
+    }
 }
