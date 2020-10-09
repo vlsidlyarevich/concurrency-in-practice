@@ -17,6 +17,12 @@ public class Table {
         }
     }
 
+    public void visualiseStats() {
+        for (var entry : philosophersForks.entrySet().toArray()) {
+
+        };
+    }
+
     private void addFirst(final Philosopher philosopher) {
         this.philosophersForks.put(philosopher, Pair.of(new Fork(1), new Fork(2)));
     }

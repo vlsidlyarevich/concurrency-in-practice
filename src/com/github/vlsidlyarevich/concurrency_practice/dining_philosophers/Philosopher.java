@@ -7,6 +7,7 @@ public class Philosopher {
     private Table table;
     private final String name;
     private Boolean isEating;
+    private int eatenCount;
 
     public Philosopher(final String name) {
         this.name = name;

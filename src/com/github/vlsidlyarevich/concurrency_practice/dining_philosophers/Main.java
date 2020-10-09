@@ -10,5 +10,10 @@ public class Main {
         Philosopher emerson = new Philosopher("Emerson");
         Philosopher chomsky = new Philosopher("Chomsky");
 
+        table.addPhilosopher(diogenes, false);
+        table.addPhilosopher(aquinas, false);
+        table.addPhilosopher(bacon, false);
+        table.addPhilosopher(emerson, false);
+        table.addPhilosopher(chomsky, true);
     }
 }
