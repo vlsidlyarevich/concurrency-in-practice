@@ -18,9 +18,10 @@ public class Table {
     }
 
     public void visualiseStats() {
-        for (var entry : philosophersForks.entrySet().toArray()) {
-
-        };
+        System.out.println("---Visualising stats---");
+        philosophersForks.forEach((philosopher, forksPair)
+                -> System.out.printf("Philosopher:%s has eated %d times%n", philosopher.getName(), philosopher.getEatenCount()));
+        System.out.println("---Stats end---");
     }
 
     private void addFirst(final Philosopher philosopher) {

@@ -15,5 +15,12 @@ public class Main {
         table.addPhilosopher(bacon, false);
         table.addPhilosopher(emerson, false);
         table.addPhilosopher(chomsky, true);
+
+        diogenes.start();
+        aquinas.start();
+        bacon.start();
+        emerson.start();
+        chomsky.start();
+        table.visualiseStats();
     }
 }

@@ -2,15 +2,29 @@ package com.github.vlsidlyarevich.concurrency_practice.dining_philosophers;
 
 import java.util.Objects;
 
-public class Philosopher {
+public class Philosopher extends Thread {
 
     private Table table;
-    private final String name;
     private Boolean isEating;
     private int eatenCount;
+    private String philosopherName;
 
     public Philosopher(final String name) {
-        this.name = name;
+        super(name);
+        this.philosopherName = name;
+    }
+
+    @Override
+    public void run() {
+        System.out.println("KEKS:" + this.getPhilosopherName());
+    }
+
+    public int getEatenCount() {
+        return eatenCount;
+    }
+
+    public String getPhilosopherName() {
+        return this.philosopherName;
     }
 
     public void setTable(final Table table) {
@@ -22,11 +36,14 @@ public class Philosopher {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         final Philosopher that = (Philosopher) o;
-        return name.equals(that.name);
+        return eatenCount == that.eatenCount &&
+                Objects.equals(table, that.table) &&
+                isEating.equals(that.isEating) &&
+                philosopherName.equals(that.philosopherName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name);
+        return Objects.hash(table, isEating, eatenCount, philosopherName);
     }
 }
