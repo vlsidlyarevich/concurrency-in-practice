@@ -3,12 +3,13 @@ package com.github.vlsidlyarevich.concurrency_practice.dining_philosophers.philo
 import com.github.vlsidlyarevich.concurrency_practice.dining_philosophers.Table;
 
 import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Philosopher extends Thread {
 
     protected Table table;
     protected Boolean isEating;
-    protected int eatenCount;
+    protected AtomicInteger eatenCount = new AtomicInteger(0);
     protected final String philosopherName;
 
     public Philosopher(final String name) {
@@ -22,7 +23,7 @@ public class Philosopher extends Thread {
     }
 
     protected void eat() {
-        //
+        this.eatenCount.addAndGet(1);
     }
 
     protected void think() {
@@ -30,7 +31,7 @@ public class Philosopher extends Thread {
     }
 
     public int getEatenCount() {
-        return eatenCount;
+        return eatenCount.get();
     }
 
     public String getPhilosopherName() {

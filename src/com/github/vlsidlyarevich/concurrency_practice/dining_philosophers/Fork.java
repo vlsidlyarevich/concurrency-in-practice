@@ -10,7 +10,7 @@ public class Fork {
     private Philosopher owner = null;
     private final int number;
 
-    private Lock lock = new ReentrantLock();
+    private final Lock lock = new ReentrantLock();
 
     public Fork(final int number) {
         this.number = number;
