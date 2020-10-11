@@ -1,5 +1,7 @@
 package com.github.vlsidlyarevich.concurrency_practice.dining_philosophers;
 
+import com.github.vlsidlyarevich.concurrency_practice.dining_philosophers.philosopher.Philosopher;
+
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -8,6 +10,7 @@ public class Table {
     private final Map<Philosopher, Pair<Fork, Fork>> philosophersForks = new LinkedHashMap<>();
 
     public void addPhilosopher(final Philosopher philosopher, boolean isLast) throws IllegalStateException {
+        philosopher.setTable(this);
         if (philosophersForks.isEmpty()) {
             addFirst(philosopher);
         } else if (!isLast) {
@@ -22,6 +25,22 @@ public class Table {
         philosophersForks.forEach((philosopher, forksPair)
                 -> System.out.printf("Philosopher:%s has eated %d times%n", philosopher.getName(), philosopher.getEatenCount()));
         System.out.println("---Stats end---");
+    }
+
+    public void takeLeftFork(Philosopher caller) {
+        this.philosophersForks.get(caller).getLeft().get(caller);
+    }
+
+    public void takeRightFork(Philosopher caller) {
+        this.philosophersForks.get(caller).getRight().get(caller);
+    }
+
+    public void releaseLeftFork(Philosopher caller) {
+        this.philosophersForks.get(caller).getLeft().release();
+    }
+
+    public void releaseRightFork(Philosopher caller) {
+        this.philosophersForks.get(caller).getRight().release();
     }
 
     private void addFirst(final Philosopher philosopher) {

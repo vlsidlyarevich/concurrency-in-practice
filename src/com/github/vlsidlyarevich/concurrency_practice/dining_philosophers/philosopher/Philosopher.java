@@ -1,13 +1,15 @@
-package com.github.vlsidlyarevich.concurrency_practice.dining_philosophers;
+package com.github.vlsidlyarevich.concurrency_practice.dining_philosophers.philosopher;
+
+import com.github.vlsidlyarevich.concurrency_practice.dining_philosophers.Table;
 
 import java.util.Objects;
 
 public class Philosopher extends Thread {
 
-    private Table table;
-    private Boolean isEating;
-    private int eatenCount;
-    private String philosopherName;
+    protected Table table;
+    protected Boolean isEating;
+    protected int eatenCount;
+    protected final String philosopherName;
 
     public Philosopher(final String name) {
         super(name);
@@ -17,6 +19,14 @@ public class Philosopher extends Thread {
     @Override
     public void run() {
         System.out.println("KEKS:" + this.getPhilosopherName());
+    }
+
+    protected void eat() {
+        //
+    }
+
+    protected void think() {
+        //
     }
 
     public int getEatenCount() {

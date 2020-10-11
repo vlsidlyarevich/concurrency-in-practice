@@ -1,5 +1,7 @@
 package com.github.vlsidlyarevich.concurrency_practice.dining_philosophers;
 
+import com.github.vlsidlyarevich.concurrency_practice.dining_philosophers.philosopher.Philosopher;
+
 public class Main {
 
     public static void main(String[] args) {
