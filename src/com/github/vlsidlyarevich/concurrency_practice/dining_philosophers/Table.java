@@ -22,8 +22,12 @@ public class Table {
 
     public void visualiseStats() {
         System.out.println("---Visualising stats---");
-        philosophersForks.forEach((philosopher, forksPair)
-                -> System.out.printf("Philosopher:%s has eated %d times%n", philosopher.getName(), philosopher.getEatenCount()));
+        int total = philosophersForks.keySet().stream()
+                .
+        for (Map.Entry<Philosopher, Pair<Fork, Fork>> entry : philosophersForks.entrySet()) {
+            Philosopher philosopher = entry.getKey();
+            System.out.printf("Philosopher:%s has eated %d times%n", philosopher.getName(), philosopher.getEatenCount());
+        }
         System.out.println("---Stats end---");
     }
 
