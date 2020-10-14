@@ -1,5 +1,6 @@
-# concurrency-in-practice
-Java concurrency exercises
+# Concurrency in practice
+My Java concurrency exercises.
+Mostly from classic books.
 
 ## Producer-consumer (or shared buffer) problem
 Create an application which represents producer-consumer problem and meets following:
