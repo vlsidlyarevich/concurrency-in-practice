@@ -9,7 +9,7 @@ Create an application which represents producer-consumer problem and meets follo
 * threads should end their work in measurable amount of time 
 * performance should me measurable
 
-#### Solutions
+#### Producer-consumer Solutions
 * Basic solution with blocking non fair algorithm (write until buffer is full, consume until buffer is empty) with
 native java tools (object monitor: wait/notify/syncronized) - [link](https://github.com/vlsidlyarevich/concurrency-in-practice/blob/master/src/com/github/vlsidlyarevich/concurrency_practice/producer_consumer/basic/Main.java)
 * Advanced (and i would say more correct) solution built on usage of Reentrant locks and
@@ -27,3 +27,9 @@ The problem is how to design a discipline of behavior (a concurrent algorithm) s
 each can forever continue to alternate between eating and thinking, assuming that no philosopher can know when others may want to eat or think.
 
 <img src="https://github.com/vlsidlyarevich/concurrency-in-practice/blob/master/docs/images/Dining_philosophers.png" width=50% height=50% alt="Dining philosophers">
+
+#### Dining philosophers solutions
+* Classic solution with resource prioritisation - each fork gets a number and every philosopher tries to lock on fork with 
+large number first. Also added [Stupid philosopher](https://github.com/vlsidlyarevich/concurrency-in-practice/blob/master/src/com/github/vlsidlyarevich/concurrency_practice/dining_philosophers/philosopher/StupidPhilosopher.java)
+for issue visualisation.
+The cons of this is that it is not fair algo - couple of philosophers are eating much more than others. 
