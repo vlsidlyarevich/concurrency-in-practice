@@ -29,7 +29,7 @@ each can forever continue to alternate between eating and thinking, assuming tha
 <img src="https://github.com/vlsidlyarevich/concurrency-in-practice/blob/master/docs/images/Dining_philosophers.png" width=50% height=50% alt="Dining philosophers">
 
 #### Dining philosophers solutions
-* Classic solution with resource prioritisation - each fork gets a number and every philosopher tries to lock on fork with 
+* Classic solution with resource prioritisation ([link](https://github.com/vlsidlyarevich/concurrency-in-practice/tree/master/src/com/github/vlsidlyarevich/concurrency_practice/dining_philosophers)) - each fork gets a number and every philosopher tries to lock on fork with 
 large number first. Also added [Stupid philosopher](https://github.com/vlsidlyarevich/concurrency-in-practice/blob/master/src/com/github/vlsidlyarevich/concurrency_practice/dining_philosophers/philosopher/StupidPhilosopher.java)
 for issue visualisation.
 The cons of this is that it is not fair algo - couple of philosophers are eating much more than others. 
